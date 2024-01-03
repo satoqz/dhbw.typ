@@ -18,11 +18,11 @@
   // Note that this is an array such that you can pass multiple authors.
   authors: (
     (
-      // Your name or names (as an array)
+      // The author's name
       name: "John Doe",
-      // Your course name
+      // The author's course name
       course: "TINF99Z",
-      // Your student id (Matrikelnummer)
+      // The author's student id (Matrikelnummer)
       student-id: "6666666",
     ),
   ),
