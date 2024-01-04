@@ -4,6 +4,9 @@ A thesis template for work at DHBW created in [Typst](https://github.com/typst/t
 
 I was likely the first student at DHBW to ever use Typst for a thesis, this is the template I've ended up with after several iterations and gathering feedback from other students using unreleased variations of it.
 
+Note that this template is only intended for students of the faculty of technology.
+Especially if you're part of the faculty of economics, you should probably consult a lawyer before you even type a single character.
+
 [**Preview**](./thesis.pdf)
 
 ### **Why you should write your thesis in Typst**
