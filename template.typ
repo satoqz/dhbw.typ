@@ -49,11 +49,14 @@
     supervisor: none,
   ),
 
+  // Path to your references/bibliography file (both YAML and BibTeX work)
+  references: "bibliography.yml",
+  // Include a confidentiality clause. Your work probably does not require it.
+  confidentiality-clause: false,
   // Your abstract.
   abstract: [Nett hier. Aber waren Sie schon mal in Baden-Württemberg?],
   // The chapters of your thesis. Takes an array of values of type `content`.
   chapters: (),
-
   // You could put an appendix here, otherwise just leave it empty.
   body,
 ) = {
@@ -99,6 +102,14 @@
   show heading.where(level: 1): set text(size: 24pt)
   show heading.where(level: 2): set text(size: 20pt)
   show heading.where(level: 3): set text(size: 16pt)
+
+  set ref(supplement: it => {
+    if it.func() == heading and it.level == 1 {
+      "Chapter"
+    } else {
+      "Section"
+    }
+  })
 
   show outline: set par(leading: 1em)
 
@@ -269,9 +280,17 @@
 
   set page(numbering: "I")
 
+  if confidentiality-clause [
+    #set heading(outlined: false)
+    == Confidentiality Clause
+
+    The content of this work may not be made accessible to people outside of the testing process and the evaluation process neither as a whole nor as excerpts, unless an authorization stating otherwise is presented by the training facility.
+    #pagebreak()
+  ]
+
   [
     #set heading(outlined: false)
-    = Author's declaration
+    == Author's declaration
 
     Hereby I solemnly declare:
 
@@ -307,8 +326,6 @@
 
   pagebreak()
 
-  let acro = () => [hi]
-
   [
     #let acronyms = yaml("acronyms.yml")
     = Acronyms
@@ -340,7 +357,7 @@
   }
 
   bibliography(
-    "./bibliography.yml",
+    references,
     title: "References",
   )
 
