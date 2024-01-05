@@ -358,7 +358,10 @@
   ]
 
   pagebreak()
+
   set page(numbering: "1 / 1")
+  counter(page).update(1)
+
   set heading(numbering: "1.1")
 
   for chapter in chapters {
