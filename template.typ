@@ -3,16 +3,20 @@
   title: "Title",
   // The kind of your thesis, e.g. "Student Research Thesis" or T1000, T2000, etc.
   kind: "Student Research Thesis",
-  // The date of submission
-  date: "19.01.2038",
-  // The time period during which the project was worked on
-  time-period: "01.01.1970 - 19.01.2038",
   // The major for this thesis
   major: "Computer Science",
   // The degree that this thesis is submitted for
   degree: "Bachelor of Science",
   // The location that goes along with your signature
   location: "Stuttgart",
+
+  // The date of submission
+  date: datetime(year: 2038, month: 1, day: 19),
+  // The time period during which the project was worked on
+  time-period: (
+    datetime(year: 1970, month: 1, day: 1),
+    datetime(year: 2038, month: 1, day: 19),
+  ),
 
   // The authors of this thesis.
   // Note that this is an array such that you can pass multiple authors.
@@ -60,7 +64,12 @@
   // You could put an appendix here, otherwise just leave it empty.
   body,
 ) = {
-  set document(title: title)
+  let date-format = "[day].[month].[year]"
+
+  set document(
+    title: title,
+    date: date,
+  )
 
   set page(
     paper: "a4",
@@ -224,7 +233,7 @@
     #v(12pt)
 
     submitted on \
-    #text(weight: "bold", date)
+    #text(weight: "bold", date.display(date-format))
 
     #set align(bottom + center)
     #stack(
@@ -252,7 +261,8 @@
       ],
       [
         #set align(left)
-        #time-period \
+        #time-period.at(0).display(date-format) -
+        #time-period.at(1).display(date-format) \
         #authors.map(author => author.student-id).join(", ") \
         #authors.map(author => author.course).join(", ") \
         #if company != none [
@@ -307,7 +317,7 @@
     I am aware that a dishonest declaration will entail legal consequences.
     #v(32pt)
 
-    #location, #date
+    #location, #date.display(date-format)
     #v(16pt)
 
     #for author in authors [
