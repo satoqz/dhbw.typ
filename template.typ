@@ -55,8 +55,6 @@
 
   // Path to your references/bibliography file (both YAML and BibTeX work)
   references: "bibliography.yml",
-  // Include a confidentiality clause. Your work probably does not require it.
-  confidentiality-clause: false,
   // Your abstract.
   abstract: [Nett hier. Aber waren Sie schon mal in Baden-Württemberg?],
   // The chapters of your thesis. Takes an array of values of type `content`.
@@ -280,23 +278,15 @@
     #pagebreak()
   ]
 
-  [
-    #set align(horizon + center)
-    #text(16pt)[*Abstract*]
-
-    #abstract
-    #pagebreak()
-  ]
+  {
+    set align(horizon + center)
+    text(size: 16pt, weight: "bold", "Abstract")
+    parbreak()
+    abstract
+    pagebreak()
+  }
 
   set page(numbering: "I")
-
-  if confidentiality-clause [
-    #set heading(outlined: false)
-    == Confidentiality Clause
-
-    The content of this work may not be made accessible to people outside of the testing process and the evaluation process neither as a whole nor as excerpts, unless an authorization stating otherwise is presented by the training facility.
-    #pagebreak()
-  ]
 
   [
     #set heading(outlined: false)
@@ -304,7 +294,7 @@
 
     Hereby I solemnly declare:
 
-    + that this #kind, titled #text(style: "italic")[#title] is entirely the product of my own scholary work, unless otherwise indicated in the text or references, or acknowledged below;
+    + that this #kind, titled #emph(title) is entirely the product of my own scholary work, unless otherwise indicated in the text or references, or acknowledged below;
 
     + I have indicated the thoughts adopted directly or indirectly from other sources at the appropriate places within the document;
 
@@ -320,11 +310,11 @@
     #location, #date.display(date-format)
     #v(16pt)
 
-    #for author in authors [
-      #v(32pt)
-      #line(length: 196pt)
-      #author.name
-    ]
+    #for author in authors {
+      v(32pt)
+      line(length: 196pt)
+      author.name
+    }
 
     #pagebreak()
   ]
@@ -336,26 +326,20 @@
 
   pagebreak()
 
-  [
-    #let acronyms = yaml("acronyms.yml")
-    = Acronyms
+  let acronyms = yaml("acronyms.yml")
+  heading(level: 1, "Acronyms")
 
-    #grid(
-      columns: (1fr, 3fr),
-      {
-        for acronym in acronyms [
-          *#acronym.at(0)*
-
-        ]
-      },
-      {
-        for acronym in acronyms [
-          #acronym.at(1)
-
-        ]
-      },
-    )
-  ]
+  grid(
+    columns: (1fr, 3fr),
+    for acronym in acronyms {
+      text(weight: "bold", acronym.at(0))
+      linebreak()
+    },
+    for acronym in acronyms {
+      acronym.at(1)
+      linebreak()
+    },
+  )
 
   pagebreak()
 
