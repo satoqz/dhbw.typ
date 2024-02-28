@@ -7,7 +7,7 @@ I was likely the first student at DHBW to ever use Typst for a thesis, this is t
 Note that this template is only intended for students of the faculty of technology.
 Especially if you're part of the faculty of economics, you should probably consult a lawyer before you even type a single character.
 
-[**Preview**](./thesis.pdf)
+[**Preview**](./example.pdf)
 
 ### **Why you should write your thesis in Typst**
 
@@ -25,8 +25,8 @@ Especially if you're part of the faculty of economics, you should probably consu
 
 1. Install Typst using one of the many available installation methods.
 
-2. Install the "Computer Modern" font. The installation procedure strongly depends on your environment.
+2. Install the font(s) you will be using - the template uses the "Computer Modern" font by default, but you're free to choose your own.
 
-3. Grab the [`template.typ`](./template.typ) and [`thesis.typ`](./thesis.typ) files and if needed the [`assets`](./assets) folder from this repository.
+3. Grab the [`dhbw.typ`](./dhbw.typ) file from this repository.
 
-4. Take a look at the parameters of the `thesis` function defined in [`template.typ`](./template.typ). Then get started by editing [`thesis.typ`](./thesis.typ) according to your needs. If you haven't you should probably also take a look at the [Typst documentation](https://typst.app/docs).
+4. Take a look at [`example.typ`] which makes use of all the components included in the template to set up the document for a bachelor's thesis. You can add or omit components to create more complex or more basic documents for different use cases, e.g. for a short term paper.
