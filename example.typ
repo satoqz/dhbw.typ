@@ -33,17 +33,13 @@
   show: dhbw.main-layout
 
   dhbw.chapters(([
-  = Introduction
+    = Introduction
 
-  == Problem Statement
-  ```rust
-        fn main() {
-            println!("Hello, World!");
-        }
-        ```
+    == Problem Statement
+    #lorem(50)
 
-  == Solution Approach
-  #lorem(100) @lorem-ipsum-generator
+    == Solution Approach
+    #lorem(100) @lorem-ipsum-generator
   ], [
     = Summary and Conclusion
 
@@ -56,3 +52,4 @@
 
   bibliography("bibliography.yml", title: "References")
 }
+
