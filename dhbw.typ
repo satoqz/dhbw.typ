@@ -143,9 +143,8 @@
 
   Hereby I solemnly declare:
 
-  + that this thesis, titled #emph(title) is entirely the product of my own scholary
-    work, unless otherwise indicated in the text or references, or acknowledged
-    below;
+  + that this thesis, titled #emph(title) is entirely the product of my own work,
+    unless otherwise indicated in the text or references, or acknowledged below;
 
   + I have indicated the thoughts adopted directly or indirectly from other sources
     at the appropriate places within the document;
