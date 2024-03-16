@@ -8,27 +8,20 @@
   show: dhbw.global-layout
   show: dhbw.frontmatter-layout
 
-  dhbw.titlepage(
-    title: title, author: author, date: date,
-    logos: (
-      image("assets/dhbw.svg", width: 30%),
-      image("assets/hpe.svg", width: 30%),
-    ),
-    table: (
-      ("Project Period", "Too short"),
-      ("Course, Student ID", "TINF21A, 1337"),
-      ("Company", "Hewlett Packard Enterprise"),
-    ),
-  )
+  dhbw.titlepage(title: title, author: author, date: date, logos: (
+    image("assets/dhbw.svg", width: 30%),
+    image("assets/hpe.svg", width: 30%),
+  ), table: (
+    ("Project Period", "Too short"),
+    ("Course, Student ID", "TINF21A, 1337"),
+    ("Company", "Hewlett Packard Enterprise"),
+  ))
 
   dhbw.abstract[
     Nett hier. Aber waren Sie schon mal in Baden-Württemberg?
   ]
 
-  dhbw.authors-declaration(
-    title: title, author: author, date: date,
-    location: "Stuttgart",
-  )
+  dhbw.authors-declaration(title: title, author: author, date: date, location: "Stuttgart")
 
   dhbw.contents()
 
@@ -39,30 +32,27 @@
 
   show: dhbw.main-layout
 
-  dhbw.chapters((
-    [
-      = Introduction
+  dhbw.chapters(([
+  = Introduction
 
-      == Problem Statement
-      ```rust
-      fn main() {
-          println!("Hello, World!");
-      }
-      ```
+  == Problem Statement
+  ```rust
+        fn main() {
+            println!("Hello, World!");
+        }
+        ```
 
-      == Solution Approach
-      #lorem(100) @lorem-ipsum-generator
-    ],
-    [
-      = Summary and Conclusion
+  == Solution Approach
+  #lorem(100) @lorem-ipsum-generator
+  ], [
+    = Summary and Conclusion
 
-      == Summary
-      #lorem(50)
+    == Summary
+    #lorem(50)
 
-      == Conclusion
-      #lorem(30)
-    ],
-  ))
+    == Conclusion
+    #lorem(30)
+  ],))
 
   bibliography("bibliography.yml", title: "References")
 }

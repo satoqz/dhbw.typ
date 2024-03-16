@@ -17,14 +17,10 @@
     set par(justify: false)
     v(1.5em / it.level)
     if it.numbering != none {
-      grid(
-        columns: (auto, auto),
-        {
-          numbering(it.numbering, ..counter(heading).at(it.location()))
-          h(36pt / it.level)
-        },
-        it.body,
-      )
+      grid(columns: (auto, auto), {
+        numbering(it.numbering, ..counter(heading).at(it.location()))
+        h(36pt / it.level)
+      }, it.body)
     } else {
       it.body
     }
@@ -39,29 +35,20 @@
     h(4pt)
     set text(size: 8pt)
     set par(justify: false)
-    let numbers = block(
-      width: 100%,
-      {
-        set text(fill: luma(150))
-        for (i, line) in it.text.split("\n").enumerate() {
-          box(width: 1em, align(right, str(i + 1)))
-          hide(line)
-          linebreak()
-        }
-      },
-    )
-    block(
-      radius: 2pt,
-      inset: 1em,
-      width: 100%,
-      fill: luma(240),
-      grid(
-        columns: (100%, 100%),
-        column-gutter: -100% + 2em,
-        numbers,
-        block(width: 100%, it),
-      )
-    )
+    let numbers = block(width: 100%, {
+      set text(fill: luma(150))
+      for (i, line) in it.text.split("\n").enumerate() {
+        box(width: 1em, align(right, str(i + 1)))
+        hide(line)
+        linebreak()
+      }
+    })
+    block(radius: 2pt, inset: 1em, width: 100%, fill: luma(240), grid(
+      columns: (100%, 100%),
+      column-gutter: -100% + 2em,
+      numbers,
+      block(width: 100%, it),
+    ))
     h(4pt)
   }
   body
@@ -109,7 +96,7 @@
 
   [for the]
   linebreak()
-  text(size: 14pt, weight: "bold", degree) 
+  text(size: 14pt, weight: "bold", degree)
   v(12pt)
 
   [at the]
@@ -127,18 +114,13 @@
   text(weight: "bold", date)
 
   set align(bottom + center)
-  stack(
-    dir: ltr,
-    spacing: 10em,
-    for pair in table {
-      set align(left)
-      text(weight: "bold", pair.at(0))
-    },
-    for pair in table {
-      set align(left)
-      pair.at(1)
-    }
-  )
+  stack(dir: ltr, spacing: 10em, for pair in table {
+    set align(left)
+    text(weight: "bold", pair.at(0))
+  }, for pair in table {
+    set align(left)
+    pair.at(1)
+  })
 }
 
 #let abstract(body) = {
@@ -161,11 +143,15 @@
 
   Hereby I solemnly declare:
 
-  + that this thesis, titled #emph(title) is entirely the product of my own scholary work, unless otherwise indicated in the text or references, or acknowledged below;
+  + that this thesis, titled #emph(title) is entirely the product of my own scholary
+    work, unless otherwise indicated in the text or references, or acknowledged
+    below;
 
-  + I have indicated the thoughts adopted directly or indirectly from other sources at the appropriate places within the document;
+  + I have indicated the thoughts adopted directly or indirectly from other sources
+    at the appropriate places within the document;
 
-  + this thesis has not been submitted either in whole or part, for a degree at this or any other university or institution;
+  + this thesis has not been submitted either in whole or part, for a degree at this
+    or any other university or institution;
 
   + I have not published this thesis in the past;
 
@@ -190,31 +176,28 @@
       v(8pt)
     }
     let weight = if it.level == 1 {
-      (body) => text(weight: "bold", body) 
+      (body) => text(weight: "bold", body)
     } else {
       (body) => text(body)
     }
     link(
       it.element.location(),
-      weight({
-        h(1em * (it.level - 1))
-        if it.body.has("children") {
-          it.body.children.at(0)
-          h(1em)
-          for child in it.body.children.slice(2) {
-            child
+      weight(
+        {
+          h(1em * (it.level - 1))
+          if it.body.has("children") {
+            it.body.children.at(0)
+            h(1em)
+            for child in it.body.children.slice(2) {
+              child
+            }
+          } else {
+            it.body
           }
-        } else {
-          it.body
-        }
-        box(width: 1fr, pad(
-          x: 6pt,
-          repeat(
-            if it.level == 1 { " " } else { "." }
-          )
-        ))
-        it.page
-      })
+          box(width: 1fr, pad(x: 6pt, repeat(if it.level == 1 { " " } else { "." })))
+          it.page
+        },
+      ),
     )
   }
   outline(indent: auto, depth: 2)
@@ -223,17 +206,13 @@
 
 #let acronyms(pairs) = {
   heading(level: 1, "Acronyms")
-  grid(
-    columns: (1fr, 3fr),
-    for acronym in pairs {
-      text(weight: "bold", acronym.at(0))
-      linebreak()
-    },
-    for acronym in pairs {
-      acronym.at(1)
-      linebreak()
-    },
-  )
+  grid(columns: (1fr, 3fr), for acronym in pairs {
+    text(weight: "bold", acronym.at(0))
+    linebreak()
+  }, for acronym in pairs {
+    acronym.at(1)
+    linebreak()
+  })
 }
 
 #let chapters(entries) = {
