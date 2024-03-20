@@ -6,10 +6,14 @@
   set enum(indent: 0.75em)
 
   set ref(supplement: it => {
-    if it.func() == heading and it.level == 1 {
-      "Chapter"
+    if it.func() == heading {
+      if it.level == 1 {
+        "Chapter"
+      } else {
+        "Section"
+      }
     } else {
-      "Section"
+      it
     }
   })
 
