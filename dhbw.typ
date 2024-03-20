@@ -13,7 +13,7 @@
         "Section"
       }
     } else {
-      it
+      it.supplement
     }
   })
 
