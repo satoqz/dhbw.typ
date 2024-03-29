@@ -33,7 +33,11 @@
   = Introduction
 
   == Problem Statement
-  #lorem(50)
+  ```rs
+  fn main() {
+    println!("Hello, World!");
+  }
+  ```
 
   == Solution Approach
   #lorem(100) @lorem-ipsum-generator
