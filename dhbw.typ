@@ -119,6 +119,7 @@
   text(weight: "bold", date)
 
   set align(bottom + center)
+  show par: set block(below: 0.75em)
   stack(dir: ltr, spacing: 10em, for pair in table {
     set align(left)
     text(weight: "bold", pair.at(0))
