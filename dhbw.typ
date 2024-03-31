@@ -38,7 +38,7 @@
   show raw.where(block: true): it => {
     h(4pt)
     set align(left)
-    set text(size: 10pt)
+    set text(size: 8pt)
     set par(justify: false)
     let numbers = block(width: 100%, {
       set text(fill: luma(150))
