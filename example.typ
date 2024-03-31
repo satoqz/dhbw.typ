@@ -1,13 +1,15 @@
 #import "dhbw.typ"
 
-#let (title, author, date) = ("DHBW Typst Template", "John Doe", "01.01.1970")
-
-#set document(title: title, author: author)
+#set document(
+  title: "DHBW Typst Template",
+  author: "John Doe",
+  date: datetime(year: 1970, month: 1, day: 1),
+)
 
 #show: dhbw.global-layout
 #show: dhbw.frontmatter-layout
 
-#dhbw.titlepage(title: title, author: author, date: date, logos: (
+#dhbw.titlepage(logos: (
   image("assets/dhbw.svg", width: 30%),
   image("assets/hpe.svg", width: 30%),
 ), table: (
@@ -17,7 +19,7 @@
 ))
 
 #dhbw.abstract[Nett hier. Aber waren Sie schon mal in Baden-Württemberg?]
-#dhbw.authors-declaration(title: title, author: author, date: date, location: "Stuttgart")
+#dhbw.authors-declaration()
 #dhbw.contents()
 #dhbw.acronyms((
   ("HPE", "Hewlett Packard Enterprise"),

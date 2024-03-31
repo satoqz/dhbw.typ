@@ -4,6 +4,7 @@
   set par(leading: 0.75em, justify: true, linebreaks: "optimized")
   set list(indent: 0.75em)
   set enum(indent: 0.75em)
+  set pagebreak(weak: true)
 
   set ref(supplement: it => {
     if it.func() == heading {
@@ -72,14 +73,11 @@
 }
 
 #let titlepage(
-  logos: (),
-  title: "Title",
-  author: "Author",
   kind: "Bachelor's thesis",
   major: "Computer Science",
   degree: "Bachelor of Science",
   university: "DHBW Stuttgart",
-  date: "01.01.1970",
+  logos: (),
   table: (),
 ) = {
   set page(numbering: none)
@@ -88,7 +86,7 @@
   stack(dir: ltr, spacing: 12em, ..logos)
   v(64pt)
 
-  text(size: 20pt, weight: "bold", title)
+  text(size: 20pt, weight: "bold")[#context document.title]
   v(12pt)
 
   text(size: 14pt, weight: "bold", kind)
@@ -111,12 +109,12 @@
 
   [by]
   linebreak()
-  text(size: 16pt, weight: "bold", author)
+  text(size: 16pt, weight: "bold")[#context document.author.join(" & ")]
   v(12pt)
 
   [submitted on]
   linebreak()
-  text(weight: "bold", date)
+  text(weight: "bold")[#context document.date.display("[day].[month].[year]")]
 
   set align(bottom + center)
   show par: set block(below: 0.75em)
@@ -137,20 +135,16 @@
   body
 }
 
-#let authors-declaration(
-  title: "Thesis",
-  author: "Author",
-  location: "Stuttgart",
-  date: "01.01.1970",
-) = [
+#let authors-declaration(location: "Stuttgart") = [
   #set heading(outlined: false)
 
   == Author's declaration
 
   Hereby I solemnly declare:
 
-  + that this thesis, titled #emph(title) is entirely the product of my own work,
-    unless otherwise indicated in the text or references, or acknowledged below;
+  + that this thesis, titled "#context document.title" is entirely the product of my
+    own work, unless otherwise indicated in the text or references, or acknowledged
+    below;
 
   + I have indicated the thoughts adopted directly or indirectly from other sources
     at the appropriate places within the document;
@@ -165,11 +159,11 @@
   I am aware that a dishonest declaration will entail legal consequences.
   #v(32pt)
 
-  #location, #date
+  #location, #context document.date.display("[day].[month].[year]")
   #v(48pt)
 
   #line(length: 200pt)
-  #author
+  #context document.author.join(", ")
 
   #pagebreak()
 ]
@@ -177,9 +171,7 @@
 #let contents() = {
   show outline: set par(leading: 1em)
   show outline.entry: it => {
-    if it.level == 1 {
-      v(8pt)
-    }
+    if it.level == 1 { v(8pt) }
     link(
       it.element.location(),
       text(
@@ -192,9 +184,7 @@
             for child in it.body.children.slice(2) {
               child
             }
-          } else {
-            it.body
-          }
+          } else { it.body }
           box(width: 1fr, pad(x: 6pt, repeat(if it.level == 1 { " " } else { "." })))
           it.page
         },
@@ -216,9 +206,7 @@
   })
 }
 
-#let chapters(entries) = {
-  for chapter in entries {
-    chapter
-    pagebreak()
-  }
+#let chapters(entries) = for chapter in entries {
+  chapter
+  pagebreak()
 }
