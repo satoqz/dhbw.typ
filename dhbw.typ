@@ -179,14 +179,10 @@
     if it.level == 1 {
       v(8pt)
     }
-    let weight = if it.level == 1 {
-      (body) => text(weight: "bold", body)
-    } else {
-      (body) => text(body)
-    }
     link(
       it.element.location(),
-      weight(
+      text(
+        weight: if it.level == 1 { "bold" } else { "regular" },
         {
           h(1em * (it.level - 1))
           if it.body.has("children") {
