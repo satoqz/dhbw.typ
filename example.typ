@@ -49,5 +49,5 @@
   #lorem(30)
 ],))
 
-#bibliography("bibliography.yml", title: "References")
+#bibliography("references.yml", title: "References")
 
