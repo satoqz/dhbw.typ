@@ -29,4 +29,4 @@ Especially if you're part of the faculty of economics, you should probably consu
 
 3. Grab the [`dhbw.typ`](./dhbw.typ) file from this repository.
 
-4. Take a look at [`example.typ`] which makes use of all the components included in the template to set up the document for a bachelor's thesis. You can add or omit components to create more complex or more basic documents for different use cases, e.g. for a short term paper.
+4. Take a look at [`example.typ`](./example.typ) which makes use of all the components included in the template to set up the document for a bachelor's thesis. You can add or omit components to create more complex or more basic documents for different use cases, e.g. for a short term paper.
