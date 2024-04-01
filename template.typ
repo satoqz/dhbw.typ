@@ -81,25 +81,33 @@
     #show strong: set text(size: 14pt)
     #show strong: it => [#pad(bottom: 12pt, it) #parbreak()]
 
+    #let author = [#context document.author.join(" & ")]
+    #let date = [#context document.date.display("[day].[month].[year]")]
+
     *Bachelor's Thesis*
 
     presented to the \ *Department of Computer Science*
     for the \ *Bachelor of Science*
     at the \ *DHBW Stuttgart*
-    by \ #strong[#context document.author.join(" & ")]
-    submitted on \ #strong[#context document.date.display("[day].[month].[year]")]
+    by \ #strong(author)
+    submitted on \ #strong(date)
   ]
 
-  align(
-    bottom,
-    table(columns: (auto, auto), align: left, stroke: none, inset: (x: 48pt), ..(
-      ([*Project Period*], [01.01.1970 - 01.01.1970]),
-      ([*Course, Student ID*], [TINF21A, 1337]),
-      ([*Company*], [Hewlett Packard Enterprise]),
-      ([*Company Supervisor*], [John Doe]),
-      ([*University Supervisor*], [John Doe]),
-    ).flatten()),
+  let details = (
+    "Project Period": [01.01.1970 - 01.01.1970],
+    "Course, Student ID": [TINF21A, 1337],
+    "Company": [Hewlett Packard Enterprise],
+    "Company Supervisor": [John Doe],
+    "University Supervisor": [John Doe],
   )
+
+  align(bottom, table(
+    columns: (auto, auto),
+    align: left,
+    stroke: none,
+    inset: (x: 48pt),
+    ..details.keys().map(strong).zip(details.values()).flatten(),
+  ))
 }
 
 #counter(page).update(1)
