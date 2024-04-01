@@ -169,28 +169,15 @@
 ]
 
 #let contents() = {
-  show outline.entry: it => {
-    if it.level == 1 { v(8pt) }
-    link(
-      it.element.location(),
-      text(
-        weight: if it.level == 1 { "bold" } else { "regular" },
-        {
-          h(1em * (it.level - 1))
-          if it.body.has("children") {
-            it.body.children.at(0)
-            h(1em)
-            for child in it.body.children.slice(2) {
-              child
-            }
-          } else { it.body }
-          box(width: 1fr, pad(x: 6pt, repeat(if it.level == 1 { " " } else { "." })))
-          it.page
-        },
-      ),
-    )
+  set outline(indent: auto, depth: 2, fill: text(weight: "regular", repeat(" . ")))
+  show outline.entry.where(level: 1): it => {
+    if it.element.func() != heading { return it }
+    show " . ": ""
+    v(8pt)
+    strong(it)
   }
-  outline(indent: auto, depth: 2)
+
+  outline()
   pagebreak()
 }
 
