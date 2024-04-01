@@ -75,14 +75,15 @@
     image("./assets/hpe.svg", width: 30%),
   ))
 
-  pad(bottom: 24pt, text(size: 20pt, strong[#context document.title]))
+  let title = context document.title
+  let author = context document.author.join(" & ")
+  let date = context document.date.display("[day].[month].[year]")
+
+  pad(bottom: 24pt, text(size: 20pt, strong(title)))
 
   [
     #show strong: set text(size: 14pt)
     #show strong: it => [#pad(bottom: 12pt, it) #parbreak()]
-
-    #let author = [#context document.author.join(" & ")]
-    #let date = [#context document.date.display("[day].[month].[year]")]
 
     *Bachelor's Thesis*
 
