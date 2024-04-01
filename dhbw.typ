@@ -135,7 +135,7 @@
   body
 }
 
-#let authors-declaration(location: "Stuttgart") = [
+#let declaration(location: "Stuttgart") = [
   #set heading(outlined: false)
 
   == Author's declaration

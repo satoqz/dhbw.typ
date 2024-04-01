@@ -19,7 +19,7 @@
 ))
 
 #dhbw.abstract[Nett hier. Aber waren Sie schon mal in Baden-Württemberg?]
-#dhbw.authors-declaration()
+#dhbw.declaration()
 #dhbw.contents()
 #dhbw.acronyms((
   ("HPE", "Hewlett Packard Enterprise"),
