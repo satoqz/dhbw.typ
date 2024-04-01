@@ -1,4 +1,4 @@
- #set document(
+#set document(
   title: "DHBW Typst Template",
   author: "John Doe",
   date: datetime.today(),
