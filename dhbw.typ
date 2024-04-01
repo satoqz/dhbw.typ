@@ -169,7 +169,6 @@
 ]
 
 #let contents() = {
-  show outline: set par(leading: 1em)
   show outline.entry: it => {
     if it.level == 1 { v(8pt) }
     link(
