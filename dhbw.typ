@@ -8,6 +8,17 @@
   set list(indent: 0.75em)
   set enum(indent: 0.75em)
 
+  set outline(indent: auto, depth: 2, fill: repeat(" . "))
+
+  show bibliography: it => [#pagebreak() #it]
+  show outline: it => [#pagebreak() #it]
+
+  show outline.entry.where(level: 1): it => [
+    #if it.element.func() != heading { return it }
+    #show ".": ""
+    #v(8pt) #strong(it)
+  ]
+
   show heading.where(level: 1): set block(above: 2em, below: 2em)
   show heading.where(level: 2): set block(above: 2em, below: 1em)
   show heading.where(level: 3): set block(above: 1em, below: 0.5em)
@@ -27,37 +38,26 @@
     }
   }
 
-  show outline: it => [#pagebreak() #it]
-  show bibliography: it => [#pagebreak() #it]
+  show raw.where(block: true): set align(left)
+  show raw.where(block: true): set par(justify: false)
+  show raw.where(block: true): set text(size: 8pt)
 
-  set outline(indent: auto, depth: 2, fill: repeat(" . "))
-  show outline.entry.where(level: 1): it => [
-    #if it.element.func() != heading { return it }
-    #show ".": ""
-    #v(8pt) #strong(it)
-  ]
+  show raw.where(block: true): set block(
+    radius: 2pt,
+    inset: 12pt,
+    width: 100%,
+    stroke: luma(128),
+    fill: luma(240),
+  )
 
-  show raw.where(block: true): it => {
-    h(4pt)
-    set align(left)
-    set text(size: 8pt)
-    set par(justify: false)
-    let numbers = block(width: 100%, {
-      set text(fill: luma(150))
-      for (i, line) in it.text.split("\n").enumerate() {
-        box(width: 1em, align(right, str(i + 1)))
-        hide(line)
-        linebreak()
-      }
-    })
-    block(radius: 2pt, inset: 1em, width: 100%, fill: luma(240), grid(
-      columns: (100%, 100%),
-      column-gutter: -100% + 2em,
-      numbers,
-      block(width: 100%, it),
-    ))
-    h(4pt)
-  }
+  show raw.where(block: false): box.with(
+    radius: 2pt,
+    inset: (x: 3pt),
+    outset: (y: 3pt),
+    stroke: luma(128),
+    fill: luma(240),
+  )
+
   body
 }
 
@@ -176,8 +176,4 @@
     acronym.at(1)
     linebreak()
   })
-}
-
-#let chapters(entries) = for chapter in entries {
-  chapter
 }

@@ -28,26 +28,21 @@
 
 #show: dhbw.main-layout
 
-// to load chapters from separate files, simply `include` them:
-// #dhbw.chapters((include "./introduction.typ", include "./summary.typ"))
+= Introduction
 
-#dhbw.chapters(([
-  = Introduction
+== Problem Statement
+#lorem(50)
 
-  == Problem Statement
-  #lorem(50)
+== Solution Approach
+#lorem(100) @lorem-ipsum-generator
 
-  == Solution Approach
-  #lorem(100) @lorem-ipsum-generator
-], [
-  = Summary and Conclusion
+= Summary and Conclusion
 
-  == Summary
-  #lorem(50)
+== Summary
+#lorem(50)
 
-  == Conclusion
-  #lorem(30)
-],))
+== Conclusion
+#lorem(30)
 
 #bibliography("references.yml", title: "References")
 
