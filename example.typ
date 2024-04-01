@@ -20,7 +20,7 @@
 
 #dhbw.abstract[Nett hier. Aber waren Sie schon mal in Baden-Württemberg?]
 #dhbw.declaration()
-#dhbw.contents()
+#outline()
 #dhbw.acronyms((
   ("HPE", "Hewlett Packard Enterprise"),
   ("YAML", "YAML Ain't Markup Language"),

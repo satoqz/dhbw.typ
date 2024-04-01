@@ -1,40 +1,41 @@
 #let global-layout(body) = {
   set page(paper: "a4", margin: 2.5cm)
-  set text(size: 12pt, font: "CMU Serif")
-  set par(leading: 0.75em, justify: true, linebreaks: "optimized")
-  set list(indent: 0.75em)
-  set enum(indent: 0.75em)
   set pagebreak(weak: true)
 
-  set ref(supplement: it => {
-    if it.func() == heading {
-      if it.level == 1 {
-        "Chapter"
-      } else {
-        "Section"
-      }
-    } else {
-      it.supplement
-    }
-  })
+  set text(size: 12pt, font: "CMU Serif")
+  set par(leading: 0.75em, justify: true, linebreaks: "optimized")
 
-  show heading: it => {
-    set par(justify: false)
-    v(1.5em / it.level)
-    if it.numbering != none {
-      grid(columns: (auto, auto), {
-        numbering(it.numbering, ..counter(heading).at(it.location()))
-        h(36pt / it.level)
-      }, it.body)
-    } else {
-      it.body
-    }
-    v(1em / it.level)
-  }
+  set list(indent: 0.75em)
+  set enum(indent: 0.75em)
+
+  show heading.where(level: 1): set block(above: 2em, below: 2em)
+  show heading.where(level: 2): set block(above: 2em, below: 1em)
+  show heading.where(level: 3): set block(above: 1em, below: 0.5em)
 
   show heading.where(level: 1): set text(size: 24pt)
   show heading.where(level: 2): set text(size: 20pt)
   show heading.where(level: 3): set text(size: 16pt)
+
+  show heading: it => {
+    if it.level == 1 { pagebreak() }
+    if it.numbering == none { it } else {
+      grid(
+        columns: (auto, auto),
+        box(width: 48pt, counter(heading).display()),
+        it.body,
+      )
+    }
+  }
+
+  show outline: it => [#pagebreak() #it]
+  show bibliography: it => [#pagebreak() #it]
+
+  set outline(indent: auto, depth: 2, fill: repeat(" . "))
+  show outline.entry.where(level: 1): it => [
+    #if it.element.func() != heading { return it }
+    #show ".": ""
+    #v(8pt) #strong(it)
+  ]
 
   show raw.where(block: true): it => {
     h(4pt)
@@ -164,22 +165,7 @@
 
   #line(length: 200pt)
   #context document.author.join(", ")
-
-  #pagebreak()
 ]
-
-#let contents() = {
-  set outline(indent: auto, depth: 2, fill: text(weight: "regular", repeat(" . ")))
-  show outline.entry.where(level: 1): it => {
-    if it.element.func() != heading { return it }
-    show " . ": ""
-    v(8pt)
-    strong(it)
-  }
-
-  outline()
-  pagebreak()
-}
 
 #let acronyms(pairs) = {
   heading(level: 1, "Acronyms")
@@ -194,5 +180,4 @@
 
 #let chapters(entries) = for chapter in entries {
   chapter
-  pagebreak()
 }
