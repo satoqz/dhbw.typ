@@ -79,7 +79,7 @@
 
   show raw.where(block: true): set block(
     radius: 2pt,
-    inset: 12pt,
+    inset: 8pt,
     width: 100%,
     stroke: luma(128),
     fill: luma(240),
