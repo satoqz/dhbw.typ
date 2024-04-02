@@ -11,6 +11,9 @@
   /// date of submission
   /// type: datetime
   date: datetime(year: 1970, month: 1, day: 1),
+  /// formatting template for the date
+  /// type: str
+  date-format: "[day].[month].[year]",
   /// List of logos to show at the top of the titlepage
   /// type: array<image>
   logos: (),
@@ -103,7 +106,7 @@
       #show strong: it => [#pad(bottom: 12pt, it) #parbreak()]
 
       #let author = author.join(" & ")
-      #let date = date.display("[day].[month].[year]")
+      #let date = date.display(date-format)
 
       *Bachelor's Thesis*
 
@@ -153,7 +156,7 @@
     I am aware that a dishonest declaration will entail legal consequences.
     #v(32pt)
 
-    Stuttgart, #date.display("[day].[month].[year]")
+    Stuttgart, #date.display(date-format)
     #v(32pt)
 
     #line(length: 256pt)
