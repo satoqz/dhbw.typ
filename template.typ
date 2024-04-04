@@ -96,6 +96,7 @@
   {
     set align(center)
     set page(numbering: none)
+    set par(justify: false)
 
     pad(bottom: 64pt, stack(dir: ltr, spacing: 12em, ..logos))
 
