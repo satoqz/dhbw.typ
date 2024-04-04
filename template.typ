@@ -109,7 +109,7 @@
       #let author = author.join(" & ")
       #let date = date.display(date-format)
 
-      *Bachelor's Thesis*
+      #strong(subtitle)
 
       presented to the \ *Department of Computer Science*
       for the \ *Bachelor of Science*
