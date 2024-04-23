@@ -37,7 +37,7 @@
   set pagebreak(weak: true)
 
   set text(size: 12pt, font: "CMU Sans Serif")
-  set par(leading: 0.75em, justify: true)
+  set par(leading: 1em, justify: true)
 
   set list(indent: 0.75em)
   set enum(indent: 0.75em)
