@@ -171,6 +171,7 @@
 
     #table(
       columns: (auto, auto),
+      inset: (left: 0em, right: 1em),
       stroke: none,
       ..acronyms.keys().map(strong).zip(acronyms.values()).flatten(),
     )

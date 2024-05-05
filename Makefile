@@ -1,7 +1,5 @@
 TYPST      ?= typst
-TYPST_LIVE ?= typst-live
-
-TYPST_ARGS = --root .
+TYPST_ARGS  = --root .
 
 SRC  = example/thesis.typ
 DEST = example/thesis.pdf
@@ -12,7 +10,4 @@ compile:
 watch:
 	$(TYPST) watch $(TYPST_ARGS) $(SRC) $(DEST) 
 
-live:
-	$(TYPST_LIVE) $(SRC) -- $(TYPST_ARGS)
-
-.PHONY: compile watch live
+.PHONY: compile watch
