@@ -4,7 +4,7 @@ A thesis template for work at DHBW created in [Typst](https://github.com/typst/t
 
 [**Example Preview**](./example/thesis.pdf)
 
-> **Note:**
+> [!NOTE]
 > This template is only intended for students of the faculty of technology, specifially
 > computer science students. Especially if you're part of the faculty of economics, you
 > should probably consult a lawyer before you even type a single character.
