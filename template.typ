@@ -42,6 +42,8 @@
   set list(indent: 0.75em)
   set enum(indent: 0.75em)
 
+  set math.equation(numbering: "1")
+
   set bibliography(title: "References")
   set outline(indent: auto, depth: 2, fill: repeat(" . "))
 
