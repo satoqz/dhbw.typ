@@ -66,9 +66,6 @@
     }
   }
 
-  show bibliography: it => [#pagebreak() #it]
-  show outline: it => [#pagebreak() #it]
-
   show outline.entry.where(level: 1): it => [
     #if it.element.func() != heading { return it }
     #show ".": ""
