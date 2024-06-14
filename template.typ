@@ -47,6 +47,8 @@
   set bibliography(title: "References")
   set outline(indent: auto, depth: 2, fill: repeat(" . "))
 
+  show par: set block(spacing: 1.5em)
+
   show heading.where(level: 1): set block(above: 2em, below: 2em)
   show heading.where(level: 2): set block(above: 2em, below: 1.5em)
   show heading.where(level: 3): set block(above: 1.5em, below: 1em)
