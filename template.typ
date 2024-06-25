@@ -99,33 +99,28 @@
     set page(numbering: none)
     set par(justify: false)
 
-    pad(bottom: 64pt, stack(dir: ltr, spacing: 12em, ..logos))
+    let author = author.join(" & ")
+    let date = date.display(date-format)
 
-    pad(bottom: 24pt, text(size: 20pt, strong(title)))
+    stack(
+      spacing: 1fr,
+      stack(dir: ltr, spacing: 1fr, ..logos),
+      text(size: 20pt, strong(title)),
+      text(size: 14pt, strong(subtitle)),
+      [
+        #show strong: set text(size: 14pt)
+        #show strong: it => [#linebreak() #it #parbreak()]
 
-    [
-      #show strong: set text(size: 14pt)
-      #show strong: it => [#pad(bottom: 12pt, it) #parbreak()]
-
-      #let author = author.join(" & ")
-      #let date = date.display(date-format)
-
-      #strong(subtitle)
-
-      presented to the \ *Department of Computer Science*
-      for the \ *Bachelor of Science*
-      at the \ *DHBW Stuttgart*
-      by \ #strong(author)
-      submitted on \ #strong(date)
-    ]
-
-    align(bottom, table(
-      columns: (auto, auto),
-      align: left,
-      stroke: none,
-      inset: (x: 48pt),
-      ..details.keys().map(strong).zip(details.values()).flatten(),
-    ))
+        presented to the *Department of Computer Science* for the *
+        Bachelor of Science* at the *DHBW Stuttgart* by #strong(author) submitted on #strong(date)
+      ],
+      table(
+        columns: (auto, 1fr, auto),
+        align: left,
+        stroke: none,
+        ..details.keys().map(it => (strong(it), none)).zip(details.values()).flatten(),
+      ),
+    )
   }
 
   counter(page).update(1)
