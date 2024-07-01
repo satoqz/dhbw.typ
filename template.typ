@@ -79,19 +79,13 @@
   show raw.where(block: true): set text(size: 8pt)
 
   show raw.where(block: true): set block(
-    radius: 2pt,
-    inset: 8pt,
-    width: 100%,
-    stroke: luma(128),
-    fill: luma(240),
+    radius: 2pt, inset: 8pt, width: 100%,
+    stroke: luma(128), fill: luma(240),
   )
 
   show raw.where(block: false): box.with(
-    radius: 2pt,
-    inset: (x: 3pt),
-    outset: (y: 3pt),
-    stroke: luma(128),
-    fill: luma(240),
+    radius: 2pt, inset: (x: 3pt), outset: (y: 3pt),
+    stroke: luma(128), fill: luma(240),
   )
 
   {
@@ -115,9 +109,7 @@
         Bachelor of Science* at the *DHBW Stuttgart* by #strong(author) submitted on #strong(date)
       ],
       table(
-        columns: (auto, 1fr, auto),
-        align: left,
-        stroke: none,
+        columns: (auto, 1fr, auto), align: left, stroke: none,
         ..details.keys().map(it => (strong(it), none)).zip(details.values()).flatten(),
       ),
     )
@@ -125,28 +117,20 @@
 
   counter(page).update(1)
 
-  {
-    set align(horizon + center)
-    set heading(outlined: false)
-    heading(level: 2)[Abstract]
+  align(horizon + center, {
+    heading(outlined: false, level: 2, [Abstract])
     abstract
     pagebreak()
-  }
+  })
 
-  [
-    #set align(horizon)
-    #set heading(outlined: false)
-
-    == Author's declaration
+  align(horizon, [
+    #heading(outlined: false, level: 2, [Author's Declaration])
 
     Hereby I solemnly declare:
 
-    + that this thesis, titled #emph(title) is entirely the product of my own work,
-      unless otherwise indicated in the text or references, or acknowledged below;
-    + I have indicated the thoughts adopted directly or indirectly from other sources
-      at the appropriate places within the document;
-    + this thesis has not been submitted either in whole or part, for a degree at this
-      or any other university or institution;
+    + that this thesis, titled #emph(title) is entirely the product of my own work, unless otherwise indicated in the text or references, or acknowledged below;
+    + I have indicated the thoughts adopted directly or indirectly from other sources at the appropriate places within the document;
+    + this thesis has not been submitted either in whole or part, for a degree at this or any other university or institution;
     + I have not published this thesis in the past;
     + the printed version, if there is such, is equivalent to the submitted one.
 
@@ -158,20 +142,15 @@
 
     #line(length: 256pt)
     #author.join(", ")
-  ]
+  ])
 
   outline()
 
-  [
-    = Acronyms
-
-    #table(
-      columns: (auto, auto),
-      inset: (left: 0em, right: 1em),
-      stroke: none,
-      ..acronyms.keys().map(strong).zip(acronyms.values()).flatten(),
-    )
-  ]
+  heading(level: 1, [Acronyms])
+  table(
+    columns: (auto, auto), inset: (left: 0em, right: 1em), stroke: none,
+    ..acronyms.keys().map(strong).zip(acronyms.values()).flatten(),
+  )
 
   set heading(numbering: "1.1")
   set page(numbering: "1 / 1")
